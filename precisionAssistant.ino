@@ -1,3 +1,6 @@
+/* Code for displaying auto-leveling and drilling distance on an OLED screen, using two tilt sensors and one ultrasonic sensor */
+/* Authors: POPOVICI ANDREI & SORODOC MATEI */
+/* Date: 30-09-2023 */
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -71,9 +74,6 @@ void loop() {
 
   display.clearDisplay();
 
-
-  //////////////////////////////////////////////////
-
     digitalWrite(trig, LOW);
     delayMicroseconds(5);
     digitalWrite(trig, HIGH);
@@ -92,18 +92,6 @@ void loop() {
     analogValue = analogRead(setDistance);
     double distanceWanted = round(2. * floatMap(analogValue, 0, 4095, 0, 20)) / 2.;
 
-    // display.setTextSize(1);
-    // display.setCursor(10, 0);
-    // display.print("Distance ");
-
-    // display.setTextSize(1);
-    // display.setCursor(65, 0);
-    // display.print(distanceWanted);
-    // display.display();
-    // delay(50);
-
-    
-
     if(digitalRead(resetButton) == 1 && k == 0){
         resetState = 1;
         k = 1;
@@ -121,10 +109,6 @@ void loop() {
                 // display.setTextSize(1);
                 // display.setCursor(40, 0);
                 // display.print("Centimeters left: ");
-
-
-/////////////////////////////
-
                 // display.setTextSize(1);
                 // display.setCursor(80, 0);
                 // display.print(cm - (initialCm - distanceWanted));
@@ -132,12 +116,12 @@ void loop() {
                 // delay(200);
             }
             else{
-               /* display.setTextSize(1);
-                display.setCursor(80, 0);
-                display.print("Start!");
-                display.display();
-                delay(200);
-                */
+               //  display.setTextSize(1);
+               //  display.setCursor(80, 0);
+               //  display.print("Start!");
+               //  display.display();
+               //  delay(200);
+               // 
                 Serial.print("");
             }
 
@@ -147,10 +131,10 @@ void loop() {
         }
         else {
 
-                display.setTextSize(3);
-                display.setCursor(30, 20);
-                display.print("STOP");
-                display.display();
+            display.setTextSize(3);
+            display.setCursor(30, 20);
+            display.print("STOP");
+            display.display();
             analogWrite(red, 255);
             analogWrite(green, 0);
             analogWrite(blue, 0);
@@ -181,7 +165,7 @@ void loop() {
     display.setTextSize(4);
     display.setCursor(55, 20);
     display.print(arrowDown);
-        display.setTextSize(1);
+    display.setTextSize(1);
     display.setCursor(20, 0);
     display.print("Distance ");
     
@@ -197,7 +181,7 @@ void loop() {
     display.setTextSize(2);
     display.setCursor(50, 25);
     display.print("OK");
-        display.setTextSize(1);
+    display.setTextSize(1);
     display.setCursor(20, 0);
     display.print("Distance ");
     
@@ -222,7 +206,7 @@ void loop() {
     display.setTextSize(5);
     display.setCursor(50, 20);
     display.print(arrowRight);
-        display.setTextSize(1);
+    display.setTextSize(1);
     display.setCursor(20, 0);
     display.print("Distance ");
     
@@ -237,7 +221,7 @@ void loop() {
     display.setTextSize(2);
     display.setCursor(50, 25);
     display.print("OK");
-        display.setTextSize(1);
+    display.setTextSize(1);
     display.setCursor(20, 0);
     display.print("Distance ");
     
@@ -261,7 +245,7 @@ void loop() {
     display.setTextSize(5);
     display.setCursor(50, 20);
     display.print(arrowLeft);
-        display.setTextSize(1);
+    display.setTextSize(1);
     display.setCursor(20, 0);
     display.print("Distance ");
     
@@ -279,7 +263,7 @@ void loop() {
     display.setTextSize(2);
     display.setCursor(50, 25);
     display.print("OK");
-        display.setTextSize(1);
+    display.setTextSize(1);
     display.setCursor(20, 0);
     display.print("Distance ");
     
